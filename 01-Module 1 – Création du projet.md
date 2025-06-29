@@ -1,4 +1,4 @@
-# <h1 id="etape-1-creation-du-projet">Étape 1 – Création du projet</h1>
+# <h1 id="etape-1-creation-du-projet">Module 1 – Création du projet</h1>
 
 Commande à exécuter dans le terminal :
 
