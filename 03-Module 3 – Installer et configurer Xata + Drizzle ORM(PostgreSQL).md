@@ -165,16 +165,150 @@ npx ts-node scripts/test-db.ts
 
 Vous devez obtenir un tableau vide `[]` (aucune facture pour l’instant) sans erreur de connexion.
 
+
+# Annexe : 
+
+
+# <h1 id="correctif-module-3">Correctif complet – Dossier `src/db`, schéma Drizzle et déclaration dans `index.ts`</h1>
+
 ---
 
-## <h2 id="evaluation">Évaluation (barème partiel)</h2>
+## <h2 id="1-rappel-des-fichiers-obligatoires">1. Rappel des fichiers obligatoires</h2>
 
-| Critère                                                        | Points |
-| -------------------------------------------------------------- | :----: |
-| `.env.local` présent et non commité                            |    2   |
-| `src/db/index.ts` exporte `db` avec `Pool` et connexion `.env` |    2   |
-| `schema.ts` conforme (7 colonnes dont `id` PK)                 |    2   |
-| Migration générée dans `drizzle/` + push réussi sur Xata       |    2   |
-| Script de test lit la table sans erreur                        |    2   |
-| **Total**                                                      | **10** |
+```
+src/
+└── db/
+    ├── index.ts     ← instance unique `db`
+    └── schema.ts    ← définition des tables + énumérations
+drizzle.config.ts    ← configuration CLI
+.env.local           ← XATA_DATABASE_URL
+```
+
+---
+
+## <h2 id="2-schema-ts-detaille">2. Contenu exhaustif de `src/db/schema.ts`</h2>
+
+```ts
+import {
+  pgTable,
+  pgEnum,
+  serial,
+  varchar,
+  numeric,
+  timestamp,
+  text,
+} from "drizzle-orm/pg-core";
+
+/* 2.1 – Enumération SQL pour le statut d’une facture */
+export const statusEnum = pgEnum("status", [
+  "open",
+  "paid",
+  "void",
+  "uncollectible",
+]);
+
+/* 2.2 – Table `invoices` */
+export const invoices = pgTable("invoices", {
+  id:          serial("id").primaryKey(),
+  createdAt:   timestamp("created_at").defaultNow().notNull(),
+  customer:    varchar("customer", { length: 120 }).notNull(),
+  email:       varchar("email",    { length: 160 }).notNull(),
+  value:       numeric("value").notNull(),
+  description: text("description"),
+  status:      statusEnum("status").notNull().default("open"),
+});
+```
+
+Points clés :
+
+* `statusEnum` doit être déclaré **avant** la table qui l’utilise.
+* Nom de table en minuscule (convention PostgreSQL).
+* Champ `created_at` pour l’horodatage.
+
+---
+
+## <h2 id="3-index-ts">3. Contenu exhaustif de `src/db/index.ts`</h2>
+
+```ts
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
+import * as schema from "@/db/schema";   // << regroupe tout le schéma
+
+const pool = new Pool({
+  connectionString: process.env.XATA_DATABASE_URL,
+  max: 20,
+});
+
+/**
+ * Instance unique de Drizzle, exportée pour tout le projet.
+ * Le schéma est passé afin de bénéficier du typage complet.
+ */
+export const db = drizzle(pool, { schema });
+```
+
+Notes :
+
+1. L’import `* as schema` capture **tous** les exports de `schema.ts` (tables + enums).
+2. Le paramètre `{ schema }` active l’auto-complétion typée dans VS Code pour toutes les requêtes.
+
+---
+
+## <h2 id="4-drizzle-config">4. `drizzle.config.ts` à la racine</h2>
+
+```ts
+import "dotenv/config";
+import { defineConfig } from "drizzle-kit";
+
+export default defineConfig({
+  schema: "./src/db/schema.ts",
+  out: "./drizzle",
+  driver: "pg",
+  dbCredentials: {
+    connectionString: process.env.XATA_DATABASE_URL!,
+  },
+});
+```
+
+---
+
+## <h2 id="5-generer-et-pousser-migration">5. Générer puis pousser la migration</h2>
+
+```bash
+npx drizzle-kit generate     # crée 001_invoices.sql dans ./drizzle
+npx drizzle-kit push         # exécute le SQL sur Xata
+```
+
+> Les deux commandes doivent se terminer sans erreur.
+> Vérifier dans la console Xata que la table `invoices` et l’énum `status` apparaissent.
+
+---
+
+## <h2 id="6-test-rapide">6. Test rapide de connexion (Server Action simplifiée)</h2>
+
+Ajoutez dans `src/app/invoices/new/page.tsx` juste au-dessus du `return` :
+
+```tsx
+/* Test lecture synchrone (Server Component) */
+const dbTest = await db.execute(sql`SELECT current_database()`);
+console.log(dbTest);            // Visible dans la console serveur
+```
+
+Rafraîchir `/invoices/new`.
+
+* Dans le terminal, la ligne `current_database` doit afficher `my-invoicing-app:main`.
+* La page reste fonctionnelle.
+
+---
+
+## <h2 id="7-points-de-controle-pour-lexamen">7. Points de contrôle pour l’examen</h2>
+
+| Item à vérifier                                        | Commentaire |
+| ------------------------------------------------------ | ----------- |
+| `schema.ts` contient `statusEnum` **et** `invoices`    | oui/non     |
+| `index.ts` importe `* as schema` et passe `{ schema }` | oui/non     |
+| Migration générée dans `./drizzle`                     | oui/non     |
+| `drizzle-kit push` exécuté sans erreur                 | oui/non     |
+| Requête test `SELECT current_database()` fonctionne    | oui/non     |
+
+
 
