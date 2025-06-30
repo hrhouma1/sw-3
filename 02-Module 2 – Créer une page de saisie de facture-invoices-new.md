@@ -215,3 +215,63 @@ export default function Page() {
 
 
 
+<br/>
+
+# Annexe 1 - Corriger les erreurs
+
+
+```bash
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+npm list tailwindcss
+```
+
+## Comment utiliser TailwindCSS v4 :
+
+```css
+/* Dans globals.css - Déjà fait*/
+@import "tailwindcss";
+
+/* Configuration de thème personnalisé - Déjà fait*/
+@theme inline {
+  --color-primary: #3b82f6;
+  --color-secondary: #64748b;
+}
+```
+
+
+## Tous le fichier global.css
+
+
+```global.css
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+```
+
+
+
+
