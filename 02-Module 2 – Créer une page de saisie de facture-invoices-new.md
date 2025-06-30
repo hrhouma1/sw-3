@@ -25,38 +25,101 @@
 * Option *Tailwind CSS* cochée **Yes** lors de la génération.
 
   > Si ce n’est pas le cas, suivre la **section A** (Installation manuelle de Tailwind) avant de passer à la suite.
+  > Mise à jour : Même si c'est installé, TailwindCSS v4 est encore en développement. Pour la production, utilisez toujours TailwindCSS v3 qui est stable et bien testé. Donc, suivez la Section A
 
 ---
 
 ## <h2 id="section-a">Section A – Installation manuelle de Tailwind (si absent)</h2>
 
-> **À exécuter uniquement si `tailwind.config.ts` n’existe pas déjà dans le projet.**
-
 1. Installer les dépendances :
 
    ```bash
    npm install -D tailwindcss postcss autoprefixer
+   npm list tailwindcss
+   npm uninstall tailwindcss @tailwindcss/postcss
+   npm list tailwindcss
+   npm install -D tailwindcss@^3.4.0
+   npm list tailwindcss
    npx tailwindcss init -p
    ```
 
-2. Modifier `tailwind.config.ts` :
 
-   ```ts
-   /** @type {import('tailwindcss').Config} */
-   export default {
-     content: ["./src/**/*.{ts,tsx,js,jsx}"],
-     theme: { extend: {} },
-     plugins: [],
-   };
-   ```
+![image](https://github.com/user-attachments/assets/8a91e9fd-da8e-462c-bf8f-7c28ec64b0c5)
 
-3. Vérifier / créer `src/styles/globals.css` et y placer :
 
-   ```css
-   @tailwind base;
-   @tailwind components;
-   @tailwind utilities;
-   ```
+2. Vérifiez le fichier postcss.config.mjs
+
+
+```bash
+const config = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+
+export default config;
+```
+
+
+3. Vérifiez le Fichier de configuration TailwindCS - Modifier `tailwind.config.ts` et mettre à joir le css global :
+
+```ts
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-geist-sans)'],
+        mono: ['var(--font-geist-mono)'],
+      },
+      colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+      },
+    },
+  },
+  plugins: [],
+} 
+```
+
+4. Vérifier / créer `src/app/globals.css` et y placer :
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+```
 
 4. Redémarrer le serveur de développement :
 
@@ -205,73 +268,4 @@ export default function Page() {
    | `register()`       | Lie un champ HTML/React au state interne          |
    | `handleSubmit(fn)` | Exécute `fn` si la validation passe               |
    | `formState.errors` | Objet listant les erreurs de validation par champ |
-
-3. Travaux dirigés à préparer :
-
-   * Ajouter `useForm()` dans `page.tsx`.
-   * Afficher en console les valeurs au `console.log(data)` après soumission.
-   * Rendre le champ **Billing Email** obligatoire et de format e-mail.
-
-
-
-
-<br/>
-
-# Annexe 1 - Corriger les erreurs
-
-
-```bash
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-npm list tailwindcss
-```
-
-## Comment utiliser TailwindCSS v4 :
-
-```css
-/* Dans globals.css - Déjà fait*/
-@import "tailwindcss";
-
-/* Configuration de thème personnalisé - Déjà fait*/
-@theme inline {
-  --color-primary: #3b82f6;
-  --color-secondary: #64748b;
-}
-```
-
-
-## Tous le fichier global.css
-
-
-```global.css
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-```
-
-
-
 
