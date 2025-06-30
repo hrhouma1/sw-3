@@ -906,3 +906,11 @@ Vous avez maintenant une application de facturation complète et fonctionnelle a
 - CRUD complet pour les factures
 
 L'application est prête pour être étendue avec d'autres fonctionnalités comme l'authentification, la génération de PDF, les notifications, etc. 
+
+
+#### Pour cloner le projet : 
+
+```
+git clone https://github.com/hrhouma1/next-01-projet02-partie1.git
+git clone https://github.com/hrhouma1/next-01-projet02-partie2.git
+```
