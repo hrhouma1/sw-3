@@ -12,9 +12,9 @@
 6. Configurer une base de données avec Drizzle ORM et Xata
 7. Créer des API routes fonctionnelles
 
----
+<br/>
 
-## Pré-requis techniques
+# Pré-requis techniques
 
 * Node >= 18 et npm
 * Projet Next.js 15 généré avec :
@@ -25,11 +25,11 @@
 
 **IMPORTANT**: Même si TailwindCSS est coché lors de la génération, Next.js 15 installe souvent TailwindCSS v4 (beta) qui est incompatible. Nous devons migrer vers TailwindCSS v3 stable.
 
----
+<br/>
 
-## Section A – Configuration TailwindCSS v3 (OBLIGATOIRE)
+# Section A – Configuration TailwindCSS v3 (OBLIGATOIRE)
 
-### 1. Vérification et migration TailwindCSS
+# 1. Vérification et migration TailwindCSS
 
 ```bash
 # Vérifier la version actuelle
@@ -51,7 +51,9 @@ npm list tailwindcss
 npm install tailwindcss-animate
 ```
 
-### 2. Configuration postcss.config.mjs
+<br/>
+
+# 2. Configuration postcss.config.mjs
 
 Créer ou modifier `postcss.config.mjs` :
 
@@ -67,7 +69,9 @@ const config = {
 export default config
 ```
 
-### 3. Configuration tailwind.config.js
+<br/>
+
+# 3. Configuration tailwind.config.js
 
 Remplacer le contenu de `tailwind.config.js` :
 
@@ -91,7 +95,10 @@ module.exports = {
 }
 ```
 
-### 4. Configuration src/app/globals.css
+
+<br/>
+
+# 4. Configuration src/app/globals.css
 
 Remplacer le contenu de `src/app/globals.css` :
 
@@ -119,7 +126,9 @@ body {
 }
 ```
 
-### 5. Correction layout.tsx
+<br/>
+
+# 5. Correction layout.tsx
 
 Modifier `src/app/layout.tsx` pour éviter les erreurs d'hydratation :
 
@@ -160,7 +169,9 @@ export default function RootLayout({
 }
 ```
 
-### 6. Test de la configuration
+<br/>
+
+# 6. Test de la configuration
 
 Modifier `src/app/page.tsx` pour tester TailwindCSS :
 
@@ -191,7 +202,9 @@ export default function Home() {
 }
 ```
 
-### 7. Redémarrage et vérification
+<br/>
+
+# 7. Redémarrage et vérification
 
 ```bash
 # Supprimer le cache (important)
@@ -203,7 +216,7 @@ npm run dev
 
 Vérifier que `http://localhost:3000` affiche correctement la page avec les styles TailwindCSS.
 
----
+
 
 ## Étape 1 – Création de l'arborescence /invoices/new
 
@@ -240,7 +253,7 @@ export default function NewInvoicePage() {
 
 Naviguer vers `http://localhost:3000/invoices/new` et vérifier que la page s'affiche correctement.
 
----
+
 
 ## Étape 2 – Installation des composants shadcn/ui
 
@@ -272,7 +285,6 @@ npx shadcn@latest add input label textarea button
 npm install react-hook-form
 ```
 
----
 
 ## Étape 3 – Création du formulaire fonctionnel
 
@@ -446,7 +458,6 @@ export default function NewInvoicePage() {
 }
 ```
 
----
 
 ## Étape 4 – Configuration de la base de données
 
@@ -537,7 +548,7 @@ Ajouter dans `package.json` :
 }
 ```
 
----
+
 
 ## Étape 5 – Création de l'API
 
@@ -631,7 +642,7 @@ export async function GET() {
 }
 ```
 
----
+
 
 ## Étape 6 – Génération et exécution des migrations
 
@@ -652,7 +663,7 @@ npm run push
 - Xata est accessible depuis votre réseau
 - Les credentials sont corrects
 
----
+
 
 ## Étape 7 – Test de l'application
 
@@ -683,7 +694,7 @@ curl -X POST http://localhost:3000/api/invoices \
   -d '{"customer":"Test Client","email":"test@example.com","value":"50.00","description":"Facture de test"}'
 ```
 
----
+
 
 ## Étape 8 – Page de liste des factures (Bonus)
 
@@ -846,7 +857,7 @@ export default function Home() {
 }
 ```
 
----
+
 
 ## Résolution des problèmes courants
 
@@ -882,7 +893,7 @@ rm -rf .next
 npm run dev
 ```
 
----
+
 
 ## Conclusion
 
