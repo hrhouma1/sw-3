@@ -79,4 +79,10 @@ export default function Home() {
 Ce fichier remplace le contenu de démonstration par défaut par une base propre avec classes Tailwind.
 
 
+#### Pour cloner le projet : 
+
+```
+git clone https://github.com/hrhouma1/next-01-projet02-partie1.git
+git clone https://github.com/hrhouma1/next-01-projet02-partie2.git
+```
 
