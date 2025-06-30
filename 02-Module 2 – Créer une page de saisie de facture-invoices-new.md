@@ -694,6 +694,62 @@ curl -X POST http://localhost:3000/api/invoices \
   -d '{"customer":"Test Client","email":"test@example.com","value":"50.00","description":"Facture de test"}'
 ```
 
+## En cas d d'erreurs :
+
+## 3.1. Version **PowerShell** multi-ligne (optionnelle, uniquement dans PowerShell) :
+
+```powershell
+curl -X POST http://localhost:3000/api/invoices -H "Content-Type: application/json" -d "{\"customer\":\"Test Client\",\"email\":\"test@example.com\",\"value\":\"50.00\",\"description\":\"Facture de test\"}"
+```
+
+**Remarques :**
+
+* Dans PowerShell, utilise l’accent grave (\`) à la fin de chaque ligne pour la continuité.
+* Pour le JSON, dans `cmd` ou `PowerShell`, les **guillemets doubles internes** (`"`) doivent être échappés (`\"`), sauf si tu utilises `'` pour tout encapsuler (plus fiable dans PowerShell).
+
+
+
+
+
+
+
+## 3.2. Version PowerShell avec `Invoke-RestMethod`
+
+```powershell
+$body = @{
+    customer    = "Test Client"
+    email       = "test@example.com"
+    value       = "50.00"
+    description = "Facture de test"
+} | ConvertTo-Json
+
+$response = Invoke-RestMethod -Uri "http://localhost:3000/api/invoices" `
+                              -Method Post `
+                              -Body $body `
+                              -ContentType "application/json"
+
+$response
+```
+
+
+
+### Explication :
+
+* `@{}` : crée un dictionnaire (hashtable) en PowerShell.
+* `ConvertTo-Json` : transforme la hashtable en JSON.
+* `Invoke-RestMethod` : envoie la requête POST avec le corps JSON.
+* Le résultat (`$response`) sera automatiquement désérialisé si c’est un JSON en retour.
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Étape 8 – Page de liste des factures (Bonus)
