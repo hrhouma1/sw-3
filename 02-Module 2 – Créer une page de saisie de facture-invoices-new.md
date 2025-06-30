@@ -129,7 +129,12 @@ npm run dev
 ```
 
 
-6. En cas de problème, il faut ajouter suppressHydrationWarning sur la balise <html>. Cela indique à React d'ignorer les différences d'hydratation uniquement sur cette balise, ce qui résoudra l'erreur causée par l'attribut data-google-analytics-opt-out.
+6. En cas de problème, il faut ajouter suppressHydrationWarning sur la balise <html>. Cela indique à React d'ignorer les différences d'hydratation uniquement sur cette balise, ce qui résoudra l'erreur causée par l'attribut data-google-analytics-opt-out. 
+
+
+```bash
+<html lang="en" suppressHydrationWarning>
+```
 
 7. Modifiez page.tsx et layout.tsx
 
