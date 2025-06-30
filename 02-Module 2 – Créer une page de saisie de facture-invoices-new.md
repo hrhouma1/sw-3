@@ -25,6 +25,7 @@
 * Option *Tailwind CSS* cochée **Yes** lors de la génération.
 
   > Si ce n’est pas le cas, suivre la **section A** (Installation manuelle de Tailwind) avant de passer à la suite.
+  
   > Mise à jour : Même si c'est installé, TailwindCSS v4 est encore en développement. Pour la production, utilisez toujours TailwindCSS v3 qui est stable et bien testé. Donc, suivez la Section A
 
 ---
