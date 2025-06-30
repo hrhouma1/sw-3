@@ -209,9 +209,12 @@ npm run dev
 
 9. En cas de problèmes
 
+```bash
 git clone https://github.com/hrhouma1/hello-next-tailwind.git
 cd hello-next-tailwind
 npm run dev
+```
+
 ---
 
 ## <h2 id="etape-1">Étape 1 – Création de l’arborescence `/invoices/new`</h2>
