@@ -420,8 +420,454 @@ Cela signifie : “Applique `bg-blue-500` **à partir du petit écran** (sm)”.
 <div class="bg-red-100 sm:bg-blue-100 md:bg-green-100">
 ```
 
+
+
+
 * Écran < 640px : rouge clair
 * Écran ≥ 640px : bleu clair
 * Écran ≥ 768px : vert clair
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+
+# Partie 4 - exercices
+
+# Exercices Tailwind CSS – Débutants absolus
+
+> **Prérequis** : Projet Next.js 15 configuré avec Tailwind v3, comme vu précédemment.
+
+---
+
+## Exercice 1 – Changer la couleur de fond et du texte
+
+**Objectif** : Modifier les couleurs en utilisant `bg-*` et `text-*`.
+
+### Étapes :
+
+1. Ouvre le fichier `src/app/page.tsx`
+2. Crée un bloc `<div>` avec cette structure :
+
+```jsx
+<div className="min-h-screen bg-gray-50 flex items-center justify-center">
+  <p className="text-blue-700 text-xl">Bienvenue dans le monde Tailwind</p>
+</div>
+```
+
+3. Change `bg-gray-50` par `bg-yellow-100`, `bg-red-200`, etc.
+4. Change `text-blue-700` par `text-green-800`, `text-red-600`, etc.
+
+---
+
+## Exercice 2 – Ajouter du padding et des marges
+
+**Objectif** : Utiliser `p-*`, `m-*`, `mt-*`, `mb-*`.
+
+### Étapes :
+
+1. Ajoute ce bloc dans la page :
+
+```jsx
+<div className="bg-white p-6 m-4 shadow rounded">
+  <p className="text-gray-700">Ce bloc a du padding et de la marge.</p>
+</div>
+```
+
+2. Essaie différentes valeurs :
+
+   * `p-2`, `p-8`
+   * `m-0`, `mt-10`, `mx-auto`
+
+---
+
+## Exercice 3 – Créer un bouton stylisé
+
+**Objectif** : Utiliser `bg-*`, `hover:*`, `rounded`, `text-*`, `px-*`, `py-*`.
+
+### Étapes :
+
+1. Ajoute ce bouton :
+
+```jsx
+<button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+  Cliquez ici
+</button>
+```
+
+2. Expérimente :
+
+   * Changer les couleurs
+   * Modifier la taille (`px-*`, `py-*`)
+   * Ajouter une bordure (`border`, `border-black`)
+
+---
+
+## Exercice 4 – Centrer un bloc avec `flex`
+
+**Objectif** : Apprendre `flex`, `justify-center`, `items-center`.
+
+### Étapes :
+
+1. Ajoute ceci dans la page :
+
+```jsx
+<div className="min-h-screen flex items-center justify-center bg-gray-100">
+  <div className="bg-white p-8 rounded shadow">
+    <p className="text-lg font-medium">Contenu centré</p>
+  </div>
+</div>
+```
+
+2. Change `justify-center` par `justify-start`, `justify-end` pour observer les effets.
+
+---
+
+## Exercice 5 – Créer une carte responsive
+
+**Objectif** : Utiliser `max-w-*`, `text-*`, `mt-*`, `rounded`, `shadow`, `sm:`.
+
+### Étapes :
+
+1. Colle ce code :
+
+```jsx
+<div className="max-w-sm mx-auto mt-10 bg-white rounded-lg shadow p-6">
+  <h2 className="text-2xl font-bold text-gray-800">Titre de la carte</h2>
+  <p className="text-gray-600 mt-2">Texte de démonstration dans une carte responsive.</p>
+</div>
+```
+
+2. Ajoute une règle responsive :
+
+```jsx
+<div className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto mt-10 bg-white rounded-lg shadow p-6">
+```
+
+Observe comment la carte s’adapte à la largeur de l’écran.
+
+---
+
+## Exercice 6 – Créer un formulaire basique
+
+**Objectif** : Appliquer Tailwind à des éléments de formulaire.
+
+### Étapes :
+
+```jsx
+<form className="max-w-md mx-auto p-4 bg-gray-50 rounded shadow mt-10">
+  <label className="block mb-2 text-sm font-medium text-gray-700">Nom</label>
+  <input className="w-full p-2 border border-gray-300 rounded mb-4" type="text" />
+
+  <label className="block mb-2 text-sm font-medium text-gray-700">Email</label>
+  <input className="w-full p-2 border border-gray-300 rounded mb-4" type="email" />
+
+  <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Envoyer</button>
+</form>
+```
+
+---
+
+## Exercice 7 – Utiliser un layout de colonne avec `grid`
+
+**Objectif** : Disposer plusieurs blocs côte à côte.
+
+```jsx
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-6">
+  <div className="bg-red-100 p-4">Bloc 1</div>
+  <div className="bg-blue-100 p-4">Bloc 2</div>
+  <div className="bg-green-100 p-4">Bloc 3</div>
+</div>
+```
+
+
+
+<br/>
+
+
+# Partie 5 - Quiz Tailwind CSS v3
+
+**Instructions** : Choisis la bonne réponse parmi les propositions. Il n’y a qu’une seule bonne réponse par question.
+
+
+
+### 1. Que signifie la classe `bg-blue-100` ?
+
+A) Un texte bleu pâle
+B) Une bordure bleue
+C) Un fond bleu clair
+D) Un fond bleu foncé
+
+---
+
+### 2. Que fait `text-center` ?
+
+A) Centre un bloc horizontalement
+B) Centre le texte à l’intérieur d’un élément
+C) Centre verticalement
+D) Ne fait rien
+
+---
+
+### 3. Que signifie `p-4` ?
+
+A) Padding horizontal de 4px
+B) Padding vertical de 4px
+C) Padding de 16px dans toutes les directions
+D) Margin de 4px
+
+---
+
+### 4. Que signifie `mt-8` ?
+
+A) Margin top = 8px
+B) Margin top = 32px
+C) Margin total = 8px
+D) Padding top = 8px
+
+---
+
+### 5. Que fait `rounded-lg` ?
+
+A) Ajoute un ombrage
+B) Rend le texte en italique
+C) Rend les coins arrondis
+D) Centre le texte
+
+---
+
+### 6. Quelle est la classe pour rendre un texte gras ?
+
+A) `text-bold`
+B) `font-weight`
+C) `font-bold`
+D) `bold-text`
+
+---
+
+### 7. `mx-auto` est utilisé pour :
+
+A) Ajouter une marge verticale
+B) Centrer un élément horizontalement
+C) Mettre un élément en plein écran
+D) Ajouter un padding horizontal
+
+---
+
+### 8. Quelle classe crée une ombre moyenne ?
+
+A) `shadow`
+B) `shadow-md`
+C) `shadow-sm`
+D) `shadow-lg`
+
+---
+
+### 9. Quelle classe rend un fond blanc ?
+
+A) `bg-white`
+B) `bg-100`
+C) `bg-gray-0`
+D) `background-white`
+
+---
+
+### 10. `flex` est utilisé pour :
+
+A) Ajouter une bordure
+B) Appliquer une animation
+C) Disposer des éléments en ligne ou en colonne
+D) Rendre le texte flexible
+
+---
+
+### 11. Quelle classe augmente la taille du texte ?
+
+A) `text-big`
+B) `font-size-lg`
+C) `text-lg`
+D) `large-text`
+
+---
+
+### 12. Pour centrer à la fois horizontalement et verticalement :
+
+A) `center-all`
+B) `flex items-center justify-center`
+C) `text-center`
+D) `mx-auto my-auto`
+
+---
+
+### 13. Que fait `grid-cols-3` ?
+
+A) Crée 3 rangées
+B) Crée 3 colonnes
+C) Crée une marge de 3px
+D) Applique 3 paddings
+
+---
+
+### 14. Que fait `w-full` ?
+
+A) Largeur automatique
+B) Largeur de 100% du parent
+C) Largeur de 100px
+D) Largeur fixe
+
+---
+
+### 15. `hover:bg-blue-700` signifie :
+
+A) Changer de texte au survol
+B) Appliquer une animation
+C) Changer le fond en bleu foncé au survol
+D) Ajouter un bouton
+
+---
+
+### 16. `text-gray-600` signifie :
+
+A) Texte invisible
+B) Texte en gris clair
+C) Texte en gris foncé
+D) Texte en gras
+
+---
+
+### 17. Que fait `py-2` ?
+
+A) Padding horizontal de 2px
+B) Padding vertical de 8px
+C) Margin vertical de 2px
+D) Padding vertical de 2px
+
+---
+
+### 18. Pour faire un bouton de base, on peut utiliser :
+
+A) `button`
+B) `bg-blue-500 text-white px-4 py-2 rounded`
+C) `text-bold shadow-full`
+D) `btn btn-primary`
+
+---
+
+### 19. Quelle classe applique une bordure grise ?
+
+A) `border-gray-300`
+B) `border:gray-300`
+C) `border-300-gray`
+D) `gray-border-300`
+
+---
+
+### 20. Quelle est la classe Tailwind pour afficher un bloc caché ?
+
+A) `display: none`
+B) `d-none`
+C) `hidden`
+D) `invisible`
+
+---
+
+### 21. À quoi sert `gap-4` dans une grille ou un flex ?
+
+A) Ajoute un padding entre les éléments
+B) Ajoute un espacement entre les colonnes ou lignes
+C) Modifie la couleur
+D) Aligne les éléments
+
+---
+
+### 22. `sm:bg-red-100` signifie :
+
+A) Applique un fond rouge sur tous les écrans
+B) Applique un fond rouge uniquement sur petits écrans
+C) Applique un fond rouge dès 640px et plus
+D) Ne fait rien
+
+---
+
+### 23. `text-sm` correspond à :
+
+A) Très grand texte
+B) Texte en majuscules
+C) Petite taille de police
+D) Texte barré
+
+---
+
+### 24. Pour ajouter une bordure arrondie complète :
+
+A) `rounded`
+B) `rounded-xl`
+C) `rounded-full`
+D) `rounded-999`
+
+---
+
+### 25. `max-w-md` signifie :
+
+A) Largeur maximale = moyen
+B) Largeur de l’écran
+C) Pleine largeur
+D) Marge externe moyenne
+
+---
+
+### 26. `overflow-hidden` sert à :
+
+A) Masquer ce qui dépasse d’un bloc
+B) Ajouter un ascenseur
+C) Centrer un élément
+D) Afficher tout le contenu
+
+---
+
+### 27. `aspect-square` signifie :
+
+A) Rendre le bloc circulaire
+B) Appliquer une hauteur fixe
+C) Appliquer un rapport largeur/hauteur de 1/1
+D) Appliquer un padding carré
+
+---
+
+### 28. Pour appliquer une animation sur survol :
+
+A) `hover:` + une classe
+B) `@hover`
+C) `hovering-class`
+D) `transition-on-hover`
+
+---
+
+### 29. `divide-y` dans une liste sert à :
+
+A) Diviser le texte
+B) Ajouter une séparation horizontale entre les enfants
+C) Supprimer les marges
+D) Ajouter une animation
+
+---
+
+### 30. Quelle est la meilleure méthode pour créer une interface responsive ?
+
+A) Ajouter des media queries manuellement
+B) Utiliser les classes `sm:`, `md:`, `lg:` de Tailwind
+C) Utiliser JavaScript
+D) Utiliser uniquement `flex`
 
 
