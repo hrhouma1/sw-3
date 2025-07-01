@@ -1,4 +1,4 @@
-*exemple complet et minimal** pour transformer le modèle précédent (`Author`, `Book`, relation 1-N) en **API REST avec FastAPI** et **SQLAlchemy**, incluant :
+*Exemple complet et minimal* pour transformer le modèle précédent (`Author`, `Book`, relation 1-N) en **API REST avec FastAPI** et **SQLAlchemy**, incluant :
 
 * Création des modèles
 * Base de données SQLite
