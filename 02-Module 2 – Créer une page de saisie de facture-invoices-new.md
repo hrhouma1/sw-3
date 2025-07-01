@@ -217,6 +217,38 @@ npm run dev
 Vérifier que `http://localhost:3000` affiche correctement la page avec les styles TailwindCSS.
 
 
+# Section troubleshooting 1
+
+- En cas d'erreurs, renommer tailwind.config.js en tailwind.config.ts et remplacez le contenu de tailwind.config.ts par le suivant:
+
+```python
+import type { Config } from 'tailwindcss'
+import animatePlugin from 'tailwindcss-animate'
+ 
+const config: Config = {
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+      },
+    },
+  },
+  plugins: [animatePlugin],
+}
+ 
+export default config
+```
+
+# Section troubleshooting 2
+
+- Voir le dossier troubleshooting fichier 1
+
 
 ## Étape 1 – Création de l'arborescence /invoices/new
 
