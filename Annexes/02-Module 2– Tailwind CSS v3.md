@@ -3,6 +3,96 @@
 **Objectif** : Apprendre à utiliser Tailwind CSS version 3 pour styliser un site web avec Next.js 15, étape par étape, sans aucune connaissance préalable.
 
 
+# Avant de commencer
+
+
+## <h1 id="definition">1. Définition</h1>
+
+**Tailwind CSS** est un **framework CSS utilitaire**.
+Il fournit une large collection de **classes CSS prédéfinies** que tu peux appliquer directement dans ton HTML pour styliser rapidement des éléments, sans écrire de CSS personnalisé.
+
+Au lieu d'utiliser des classes abstraites comme `.card`, `.header`, ou `.button`, tu composes ton design en utilisant des **petites classes très spécifiques** comme `text-lg`, `bg-red-500`, `p-4`, etc.
+
+
+
+## <h2 id="exemple">2. Exemple comparatif</h2>
+
+### Sans Tailwind CSS (avec un fichier CSS personnalisé) :
+
+```html
+<!-- HTML -->
+<button class="btn">Envoyer</button>
+```
+
+```css
+/* CSS */
+.btn {
+  background-color: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: bold;
+}
+```
+
+### Avec Tailwind CSS :
+
+```html
+<button class="bg-blue-500 text-white py-2 px-4 rounded font-bold">
+  Envoyer
+</button>
+```
+
+Tu n’écris plus de règles CSS. Tu utilises les classes Tailwind directement.
+
+
+
+## <h2 id="avantages">3. Avantages</h2>
+
+* **Productivité élevée** : tu développes des interfaces rapidement.
+* **Pas besoin de fichier CSS séparé**.
+* **Contrôle précis** sur chaque propriété CSS.
+* **Design responsive facile** avec des préfixes (`sm:`, `md:`, `lg:`…).
+* **Personnalisable** via un fichier de configuration (`tailwind.config.js`).
+
+
+
+## <h2 id="inconvenients">4. Inconvénients</h2>
+
+* Le HTML devient parfois **verbeux** (beaucoup de classes à la suite).
+* Courbe d’apprentissage pour comprendre les conventions (`bg-gray-100`, `px-6`, `space-y-4`, etc.).
+* Nécessite un système de **compilation CSS** avec PostCSS, Vite, Webpack ou autre.
+
+
+
+## <h2 id="comment-ca-marche">5. Comment ça fonctionne</h2>
+
+Tu crées un fichier CSS principal comme ceci :
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Puis tu compiles ce fichier avec un outil (Vite, Webpack, CLI Tailwind).
+
+Enfin, tu écris ton HTML comme ceci :
+
+```html
+<div class="max-w-xl mx-auto p-4 bg-white shadow rounded">
+  <h1 class="text-2xl font-bold mb-4">Bienvenue</h1>
+  <p class="text-gray-700">Ceci est un exemple de contenu.</p>
+</div>
+```
+
+
+## <h2 id="ressources">6. Ressource officielle</h2>
+
+* Documentation complète : [https://tailwindcss.com/docs](https://tailwindcss.com/docs)
+
+
+<br/>
 
 # 1. Créer un projet Next.js 15
 
