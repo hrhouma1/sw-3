@@ -1099,6 +1099,27 @@ npm install next-themes
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br/>
 <br/>
 
@@ -1106,8 +1127,117 @@ npm install next-themes
 
 # Code 1 - 
 
+![image](https://github.com/user-attachments/assets/9b4075d0-6a50-409a-aa1d-bd8f1bd1bebb)
+
+
+
 ```bash
-npm install next-themes
+import { NextRequest, NextResponse } from 'next/server';
+import { db } from '@/db';
+import { invoices } from '@/db/schema';
+import { sql } from 'drizzle-orm';
+
+// Variable globale pour l'ID séquentiel (en production, utiliser une vraie séquence DB)
+let nextId = 1;
+
+export async function POST(request: NextRequest) {
+  try {
+    console.log('[API] POST /api/invoices - Début de la requête');
+    
+    const body = await request.json();
+    console.log('[API] Body reçu:', JSON.stringify(body, null, 2));
+    
+    const { customer, email, value, description } = body;
+
+    // Validation basique
+    if (!customer || !email || !value) {
+      console.log('[API] Validation échouée - champs manquants');
+      return NextResponse.json(
+        { error: 'Les champs customer, email et value sont requis' },
+        { status: 400 }
+      );
+    }
+
+    console.log('[API] Validation réussie');
+    
+    // Obtenir le prochain ID en interrogeant la base de données
+    console.log('[API] Recherche du prochain ID disponible...');
+    const maxIdResult = await db.execute(sql`SELECT COALESCE(MAX(id), 0) + 1 as next_id FROM invoices`);
+    const nextAvailableId = maxIdResult.rows[0]?.next_id || 1;
+    
+    console.log('[API] Prochain ID disponible:', nextAvailableId);
+    
+    const insertData = {
+      id: Number(nextAvailableId),
+      customer,
+      email,
+      value: value.toString(),
+      description: description || null,
+      status: 'open' as const
+    };
+    
+    console.log('[API] Données à insérer:', insertData);
+
+    // Insertion dans la base de données
+    console.log('[API] Tentative d\'insertion en base...');
+    const newInvoice = await db.insert(invoices).values(insertData).returning();
+
+    console.log('[API] Insertion réussie:', JSON.stringify(newInvoice[0], null, 2));
+
+    return NextResponse.json({
+      success: true,
+      invoice: newInvoice[0],
+      message: 'Facture créée avec succès !'
+    });
+
+  } catch (error) {
+    console.error('[API] Erreur lors de la création de la facture:', error);
+    
+    // Log détaillé de l'erreur
+    if (error instanceof Error) {
+      console.error('[API] Message d\'erreur:', error.message);
+      console.error('[API] Stack trace:', error.stack);
+    }
+    
+    return NextResponse.json(
+      { 
+        success: false,
+        error: 'Erreur interne du serveur',
+        details: error instanceof Error ? error.message : 'Erreur inconnue'
+      },
+      { status: 500 }
+    );
+  }
+}
+
+export async function GET() {
+  try {
+    console.log('[API] GET /api/invoices - Récupération des factures');
+    
+    // Récupération de toutes les factures
+    const allInvoices = await db.select().from(invoices).orderBy(invoices.createdAt);
+
+    console.log(`[API] ${allInvoices.length} factures récupérées`);
+
+    return NextResponse.json({
+      success: true,
+      invoices: allInvoices,
+      count: allInvoices.length
+    });
+
+  } catch (error) {
+    console.error('[API] Erreur lors de la récupération des factures:', error);
+    
+    return NextResponse.json(
+      { 
+        success: false,
+        error: 'Erreur lors de la récupération des factures',
+        details: error instanceof Error ? error.message : 'Erreur inconnue'
+      },
+      { status: 500 }
+    );
+  }
+} 
 ```
 
 
@@ -1117,14 +1247,148 @@ npm install next-themes
 
 # Code 2 - 
 
+
+![image](https://github.com/user-attachments/assets/fc2ccdfa-8c5a-4a85-9753-9737fc4dcbaf)
+
+
 ```bash
-npm install next-themes
-```
+import { db } from '@/db';
+import { invoices } from '@/db/schema';
+import { Button } from '@/components/ui/button';
+
+type Invoice = typeof invoices.$inferSelect;
+
+export default async function DashboardPage() {
+  let allInvoices: Invoice[] = [];
+  let error = null;
+
+  try {
+    allInvoices = await db.select().from(invoices).orderBy(invoices.createdAt);
+  } catch (e) {
+    error = e instanceof Error ? e.message : 'Erreur de connexion à la base de données';
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto p-6">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-2xl font-semibold text-gray-900">
+            Factures
+          </h1>
+          <Button 
+            asChild
+            className="bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-lg px-4 py-2 flex items-center gap-2"
+            variant="outline"
+          >
+            <a href="/invoices/new">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+              Créer une facture
+            </a>
+          </Button>
+        </div>
+
+        {error ? (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+            <h2 className="text-xl font-semibold text-red-700 mb-2">
+              Erreur de chargement
+            </h2>
+            <p className="text-red-600">{error}</p>
+          </div>
+        ) : (
+          <div className="bg-white">
+            {allInvoices.length === 0 ? (
+              <div className="text-center py-12">
+                <h3 className="text-lg font-medium text-gray-600 mb-2">
+                  Aucune facture trouvée
+                </h3>
+                <p className="text-gray-500 mb-6">
+                  Commencez par créer votre première facture.
+                </p>
+                <Button asChild>
+                  <a href="/invoices/new" className="inline-flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                    </svg>
+                    Créer ma première facture
+                  </a>
+                </Button>
+              </div>
+            ) : (
+              <div className="overflow-hidden">
+                {/* Table Header */}
+                <div className="grid grid-cols-5 gap-4 px-6 py-3 bg-gray-50 border-b border-gray-200 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <div>Date</div>
+                  <div>Client</div>
+                  <div>Email</div>
+                  <div>Statut</div>
+                  <div className="text-right">Montant</div>
+                </div>
+                
+                {/* Table Body */}
+                <div className="divide-y divide-gray-200">
+                  {allInvoices.map((invoice) => (
+                    <div key={invoice.id} className="grid grid-cols-5 gap-4 px-6 py-4 hover:bg-gray-50 transition-colors">
+                      {/* Date */}
+                      <div className="flex items-center">
+                        <div className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm font-medium">
+                          {invoice.createdAt ? new Date(invoice.createdAt).toLocaleDateString('fr-FR', { month: 'numeric', day: 'numeric', year: 'numeric' }) : 'N/A'}
+                        </div>
+                      </div>
+                      
+                      {/* Customer */}
+                      <div className="flex items-center">
+                        <span className="text-sm font-medium text-gray-900">
+                          {invoice.customer}
+                        </span>
+                      </div>
+                      
+                      {/* Email */}
+                      <div className="flex items-center">
+                        <span className="text-sm text-gray-600">
+                          {invoice.email}
+                        </span>
+                      </div>
+                      
+                      {/* Status */}
+                      <div className="flex items-center">
+                        <span className="inline-flex px-3 py-1 text-xs font-medium rounded-full bg-gray-900 text-white">
+                          {invoice.status === 'open' ? 'Ouvert' : invoice.status === 'paid' ? 'Payé' : invoice.status || 'Ouvert'}
+                        </span>
+                      </div>
+                      
+                      {/* Value */}
+                      <div className="flex items-center justify-end">
+                        <span className="text-sm font-semibold text-gray-900">
+                          {parseFloat(invoice.value || '0').toFixed(2)} $
+                        </span>
+                        <button className="ml-2 text-gray-400 hover:text-gray-600">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+} ```
 
 <br/>
 <br/>
 
-# Code 3 - 
+# Code 3 -
+
+![image](https://github.com/user-attachments/assets/b949d7d8-edb2-41cc-b429-c5d8c1f1d949)
+
 
 ```bash
 npm install next-themes
@@ -1137,6 +1401,9 @@ npm install next-themes
 
 # Code 4 - 
 
+![image](https://github.com/user-attachments/assets/d7a7cd76-ddad-4803-9a86-b4a1a7a7699a)
+
+
 ```bash
 npm install next-themes
 ```
@@ -1146,8 +1413,90 @@ npm install next-themes
 
 # Code 5 - 
 
+![image](https://github.com/user-attachments/assets/acaafb06-9785-4a48-b2ed-e5426f78c400)
+
+
+
 ```bash
-npm install next-themes
+'use client';
+
+import { useState } from 'react';
+
+export default function TestApiPage() {
+  const [result, setResult] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+
+  const testCreateInvoice = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/invoices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          customer: 'Test Customer',
+          email: 'test@example.com',
+          value: '50.00',
+          description: 'Test facture depuis page de test'
+        })
+      });
+
+      const data = await response.json();
+      setResult(JSON.stringify(data, null, 2));
+    } catch (error) {
+      setResult(`Erreur: ${error}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const testGetInvoices = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('/api/invoices');
+      const data = await response.json();
+      setResult(JSON.stringify(data, null, 2));
+    } catch (error) {
+      setResult(`Erreur: ${error}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="p-8">
+      <h1 className="text-2xl font-bold mb-6">Test de l&apos;API Invoices</h1>
+      
+      <div className="space-y-4">
+        <button
+          onClick={testCreateInvoice}
+          disabled={loading}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 disabled:opacity-50"
+        >
+          {loading ? 'Test en cours...' : 'Tester POST (Créer facture)'}
+        </button>
+
+        <button
+          onClick={testGetInvoices}
+          disabled={loading}
+          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 disabled:opacity-50 ml-4"
+        >
+          {loading ? 'Test en cours...' : 'Tester GET (Récupérer factures)'}
+        </button>
+      </div>
+
+      {result && (
+        <div className="mt-6">
+          <h2 className="text-lg font-semibold mb-2">Résultat :</h2>
+          <pre className="bg-gray-100 p-4 rounded overflow-auto text-sm">
+            {result}
+          </pre>
+        </div>
+      )}
+    </div>
+  );
+} 
 ```
 
 
