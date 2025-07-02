@@ -1,5 +1,5 @@
 
-# 5-2.  QUESTION 1 : Analyse du Projet
+# 1.  QUESTION 1 : Analyse du Projet
 
 **Analysez la structure du projet ci-dessus et répondez aux questions suivantes :**
 
