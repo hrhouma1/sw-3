@@ -1,3 +1,11 @@
+
+
+
+
+<br/>
+
+<br/>
+
 #  **06_GUIDE PRATIQUE : Construire votre Application de Facturation**
 
 > **Objectif :** Créer de A à Z une application Next.js 15 moderne avec App Router, Drizzle ORM, TailwindCSS et React Hook Form
