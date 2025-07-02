@@ -49,7 +49,7 @@ MY-INVOICING-APP/
 
 <br/>
 
-# Annexe 1 : *GUIDE PRATIQUE : Construire notre Application de Facturation*
+# Annexe 1 - *GUIDE PRATIQUE : Construire notre Application de Facturation*
 
 > **Objectif :** Créer de A à Z une application Next.js 15 moderne avec App Router, Drizzle ORM, TailwindCSS et React Hook Form
 
@@ -1100,19 +1100,175 @@ npm install next-themes
 
 
 <br/>
-
 <br/>
 
 
 
-#
+# Code 1 - 
 
-#
+```bash
+npm install next-themes
+```
 
 
-#
+<br/>
+<br/>
 
-#
+
+# Code 2 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 3 - 
+
+```bash
+npm install next-themes
+```
+
+
+
+<br/>
+<br/>
+
+# Code 4 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 5 - 
+
+```bash
+npm install next-themes
+```
+
+
+<br/>
+<br/>
+
+# Code 6 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 7 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 8 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 9 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 10 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 11 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 12 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 13 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 14 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 15 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 16 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 17 - 
+
+```bash
+npm install next-themes
+```
+
+<br/>
+<br/>
+
+# Code 18 - 
+
+```bash
+npm install next-themes
+```
+
+
 
 
 
