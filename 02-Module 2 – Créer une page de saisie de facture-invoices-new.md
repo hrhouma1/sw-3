@@ -1001,4 +1001,8 @@ L'application est prête pour être étendue avec d'autres fonctionnalités comm
 ```
 git clone https://github.com/hrhouma1/next-01-projet02-partie1.git
 git clone https://github.com/hrhouma1/next-01-projet02-partie2.git
+git clone https://github.com/hrhouma1/next-01-projet02-partie3.git
+git clone https://github.com/hrhouma1/next-01-projet02-partie4.git
+git clone https://github.com/hrhouma1/next-01-projet02-partie5.git
+git clone https://github.com/hrhouma1/next-01-projet02-partie6.git
 ```
