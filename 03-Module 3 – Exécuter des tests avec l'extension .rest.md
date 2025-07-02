@@ -1,4 +1,47 @@
 
+# 1 - Arborescence de notre projet `MY-INVOICING-APP` :
+
+```
+MY-INVOICING-APP/
+├── .next/
+├── drizzle/
+├── node_modules/
+├── public/
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── invoices/
+│   │   │       └── route.ts
+│   │   ├── dashboard/
+│   │   │   └── page.tsx
+│   │   ├── invoices/
+│   │   │   ├── new/
+│   │   │   │   └── page.tsx
+│   │   │   └── page.tsx
+│   │   ├── test/
+│   │   ├── test-api/
+│   │   │   └── page.tsx
+│   │   ├── test-db/
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── components/
+│   │       └── ui/
+│   │           ├── button.tsx
+│   │           ├── input.tsx
+│   │           ├── label.tsx
+│   │           └── textarea.tsx
+│   ├── db/
+│   │   ├── index.ts
+│   │   └── schema.ts
+│   └── lib/
+├── .env.local
+```
+
+
+
+
 
 
 
@@ -6,7 +49,7 @@
 
 <br/>
 
-#  **06_GUIDE PRATIQUE : Construire votre Application de Facturation**
+# Annexe 1 : **06_GUIDE PRATIQUE : Construire notre Application de Facturation**
 
 > **Objectif :** Créer de A à Z une application Next.js 15 moderne avec App Router, Drizzle ORM, TailwindCSS et React Hook Form
 
