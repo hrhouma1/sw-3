@@ -49,7 +49,7 @@ MY-INVOICING-APP/
 
 <br/>
 
-# Annexe 1 : **06_GUIDE PRATIQUE : Construire notre Application de Facturation**
+# Annexe 1 : *GUIDE PRATIQUE : Construire notre Application de Facturation*
 
 > **Objectif :** Créer de A à Z une application Next.js 15 moderne avec App Router, Drizzle ORM, TailwindCSS et React Hook Form
 
@@ -1093,3 +1093,26 @@ npm install next-themes
 > **Niveau :** Intermédiaire  
 > **Stack :** Next.js 15, TypeScript, TailwindCSS, Drizzle ORM, PostgreSQL
 </rewritten_file>
+
+
+
+
+
+
+<br/>
+
+<br/>
+
+
+
+#
+
+#
+
+
+#
+
+#
+
+
+
