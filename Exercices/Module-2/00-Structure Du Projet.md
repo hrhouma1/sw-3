@@ -1,6 +1,4 @@
-
-
-# 5.1 - Structure du Projet
+# 00 - Structure du Projet
 
 Voici l'arbre de fichiers de notre application de facturation :
 
