@@ -117,10 +117,10 @@ Objectifs :
 ### Question 1
 
 Quel en-tête doit obligatoirement être fourni lors d’un `POST` JSON vers une API REST ?
-A. Accept
-B. Content-Type
-C. User-Agent
-D. Authorization
+- A. Accept
+- B. Content-Type
+- C. User-Agent
+- D. Authorization
 
 **Réponse : B**
 Explication : `Content-Type` précise la nature du corps envoyé (ici `application/json`). Sans lui le serveur ne sait pas comment parser la requête.
@@ -130,10 +130,10 @@ Explication : `Content-Type` précise la nature du corps envoyé (ici `applicati
 ### Question 2
 
 Quel code de statut est adéquat si la route `/api/invoices/create` n’existe pas ?
-A. 200
-B. 201
-C. 404
-D. 405
+- A. 200
+- B. 201
+- C. 404
+- D. 405
 
 **Réponse : C**
 Explication : Ressource introuvable, donc `404 Not Found`.
@@ -143,10 +143,10 @@ Explication : Ressource introuvable, donc `404 Not Found`.
 ### Question 3
 
 Vous envoyez un JSON mal formé. Quel code devez-vous attendre ?
-A. 400
-B. 401
-C. 403
-D. 500
+- A. 400
+- B. 401
+- C. 403
+- D. 500
 
 **Réponse : A**
 Explication : La requête est invalide côté client (`Bad Request`).
@@ -156,10 +156,10 @@ Explication : La requête est invalide côté client (`Bad Request`).
 ### Question 4
 
 Quel en-tête de réponse liste les méthodes autorisées lorsque le serveur retourne `405 Method Not Allowed` ?
-A. Allow
-B. Accept
-C. Vary
-D. Retry-After
+- A. Allow
+- B. Accept
+- C. Vary
+- D. Retry-After
 
 **Réponse : A**
 Explication : Le RFC 7231 impose d’inclure `Allow: GET, POST`.
@@ -169,10 +169,10 @@ Explication : Le RFC 7231 impose d’inclure `Allow: GET, POST`.
 ### Question 5
 
 Dans le plan de tests, pourquoi utiliser `@baseUrl` et `@apiUrl` ?
-A. Pour masquer l’URL réelle dans les logs.
-B. Pour faciliter un changement d’environnement sans modifier chaque requête.
-C. Pour augmenter la sécurité TLS.
-D. Pour éviter d’utiliser `localhost`.
+- A. Pour masquer l’URL réelle dans les logs.
+- B. Pour faciliter un changement d’environnement sans modifier chaque requête.
+- C. Pour augmenter la sécurité TLS.
+- D. Pour éviter d’utiliser `localhost`.
 
 **Réponse : B**
 Explication : Les variables globales rendent le fichier portable entre développement, staging et production.
@@ -182,10 +182,10 @@ Explication : Les variables globales rendent le fichier portable entre développ
 ### Question 6
 
 Quel est le rôle de `Accept: application/json` dans une requête ?
-A. Indiquer au serveur quel type de réponse est souhaité.
-B. Indiquer au client quel type de contenu il envoie.
-C. Forcer l’authentification.
-D. Configurer le cache.
+- A. Indiquer au serveur quel type de réponse est souhaité.
+- B. Indiquer au client quel type de contenu il envoie.
+- C. Forcer l’authentification.
+- D. Configurer le cache.
 
 **Réponse : A**
 Explication : `Accept` décrit les formats que le client peut accepter.
@@ -195,10 +195,10 @@ Explication : `Accept` décrit les formats que le client peut accepter.
 ### Question 7
 
 `drizzle-kit` génère des migrations ; quel est l’équivalent HTTP de la migration appliquée ?
-A. 200
-B. 201
-C. 204
-D. Ce n’est pas relié à HTTP.
+- A. 200
+- B. 201
+- C. 204
+- D. Ce n’est pas relié à HTTP.
 
 **Réponse : D**
 Explication : Les migrations sont côté base de données ; elles ne renvoient pas de code HTTP.
