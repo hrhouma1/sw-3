@@ -1,6 +1,24 @@
 
 # 1 - Arborescence de notre projet `MY-INVOICING-APP` :
 
+### 1.1 - Codes présentés :
+
+```
+code 1 - app/api/invoices/route.ts
+Code 2 - dashboard/page.tsx
+Code 3 - invoices/new/page.tsx 
+Code 4 - invoices/page.tsx
+Code 5 - test-api/page.tsx
+Code 6 - src/app/layout.tsx
+Code 7 - src/app/page.tsx
+Code 8 - db/index.ts
+Code 9 - db/schema.ts
+Code 10 - package.json
+```
+
+### 1.2 - Arborescence :
+
+
 ```
 MY-INVOICING-APP/
 ├── .next/
@@ -46,7 +64,6 @@ MY-INVOICING-APP/
 
 
 <br/>
-
 <br/>
 
 # Annexe 1 - *GUIDE PRATIQUE : Construire notre Application de Facturation*
