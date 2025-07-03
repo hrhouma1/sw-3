@@ -440,106 +440,218 @@ export default function NewInvoicePage() {
 
 
 
-### 📋 Questions sur le Formulaire React Hook Form (30 points)
 
-#### A) React Hook Form et Validation (8 points)
+# QUESTION 4 : Formulaire React Hook Form (30 points)
 
-32. **Analysez la configuration de React Hook Form :**
-    ```javascript
-    const { register, handleSubmit, reset, formState: { errors } } = useForm<InvoiceForm>();
-    ```
-    - Que fait chaque fonction destructurée ?
-    - Quel est l'avantage du typage `<InvoiceForm>` ?
+
+
+## A) React Hook Form et Validation (8 points)
+
+32. **Analysez la configuration suivante :**
+
+```ts
+const { register, handleSubmit, reset, formState: { errors } } = useForm<InvoiceForm>();
+```
+
+* Que fait chaque fonction destructurée ?
+* Quel est l’avantage du typage `<InvoiceForm>` ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
 33. **Comparez ces deux validations :**
-    ```javascript
-    // Validation 1 :
-    {...register('customer', { required: 'Le nom du client est requis' })}
-    
-    // Validation 2 :
-    {...register('email', {
-      required: 'L\'email est requis',
-      pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'Email invalide' }
-    })}
-    ```
-    Expliquez les différences et analysez l'expression régulière.
 
-34. **Pourquoi utilise-t-on `{...register('fieldName')}` avec le spread operator ?** Que fait concrètement cette syntaxe ?
+```ts
+// Validation 1 :
+{...register('customer', { required: 'Le nom du client est requis' })}
 
-#### B) États React et Gestion Asynchrone (7 points)
+// Validation 2 :
+{...register('email', {
+  required: 'L\'email est requis',
+  pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'Email invalide' }
+})}
+```
 
-35. **Analysez la gestion des états de soumission :**
-    ```javascript
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitResult, setSubmitResult] = useState<string | null>(null);
-    const [isSuccess, setIsSuccess] = useState(false);
-    ```
-    Pourquoi avoir 3 états séparés au lieu d'un seul objet ?
+* Expliquez les différences
+* Analysez le rôle de l'expression régulière
 
-36. **Expliquez cette séquence dans `onSubmit` :**
-    ```javascript
-    setIsSubmitting(true);
-    setSubmitResult(null);
-    setIsSuccess(false);
-    // [...] 
-    } finally {
-      setIsSubmitting(false);
-    }
-    ```
-    Que se passe-t-il si on oublie le `finally` ?
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
-37. **Analysez l'appel API :**
-    ```javascript
-    const response = await fetch('/api/invoices', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
-    ```
-    Pourquoi `JSON.stringify(data)` est-il nécessaire ?
+34. **Pourquoi utilise-t-on `{...register('fieldName')}` avec le spread operator ?**
+    Que fait concrètement cette syntaxe ?
 
-#### C) Client Component vs Server Component (5 points)
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
-38. **Pourquoi ce composant doit-il être un Client Component ?** Listez 3 raisons spécifiques du code.
+<br/>
+<br/>
 
-39. **Que se passerait-il si on enlève `'use client'` ?** Quelles erreurs obtiendrions-nous ?
+## B) États React et Gestion Asynchrone (7 points)
 
-#### D) TailwindCSS Avancé et Responsive (6 points)
+35. **Analysez la gestion suivante :**
+
+```ts
+const [isSubmitting, setIsSubmitting] = useState(false);
+const [submitResult, setSubmitResult] = useState<string | null>(null);
+const [isSuccess, setIsSuccess] = useState(false);
+```
+
+Pourquoi avoir 3 états séparés au lieu d’un seul objet ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+36. **Expliquez cette séquence :**
+
+```ts
+setIsSubmitting(true);
+setSubmitResult(null);
+setIsSuccess(false);
+// [...] 
+} finally {
+  setIsSubmitting(false);
+}
+```
+
+Que se passe-t-il si on oublie le `finally` ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+37. **Analysez cet appel API :**
+
+```ts
+const response = await fetch('/api/invoices', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data),
+});
+```
+
+Pourquoi `JSON.stringify(data)` est-il nécessaire ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+<br/>
+<br/>
+
+## C) Client Component vs Server Component (5 points)
+
+38. **Pourquoi ce composant doit-il être un Client Component ?**
+    Listez 3 raisons spécifiques tirées du code.
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+39. **Que se passerait-il si on enlève `'use client'` ?**
+    Quelles erreurs obtiendrions-nous ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+<br/>
+<br/>
+
+## D) TailwindCSS Avancé et Responsive (6 points)
 
 40. **Analysez ce dégradé CSS :**
-    ```css
-    bg-gradient-to-br from-blue-50 to-indigo-100
-    ```
-    - Que signifie `to-br` ?
-    - Comment créer un dégradé vertical ?
+
+```css
+bg-gradient-to-br from-blue-50 to-indigo-100
+```
+
+* Que signifie `to-br` ?
+* Comment créer un dégradé vertical ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
 41. **Expliquez ce grid responsive :**
-    ```css
-    grid grid-cols-1 md:grid-cols-2 gap-6
-    ```
-    Quel est le comportement sur différentes tailles d'écran ?
+
+```css
+grid grid-cols-1 md:grid-cols-2 gap-6
+```
+
+Quel est le comportement sur différentes tailles d’écran ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
 42. **Analysez cette classe conditionnelle complexe :**
-    ```javascript
-    className={`p-4 rounded ${
-      isSuccess
-        ? 'bg-green-50 text-green-700 border border-green-200' 
-        : 'bg-red-50 text-red-700 border border-red-200'
-    }`}
-    ```
-    Pourquoi utiliser des template literals ici ?
 
-#### E) UX et Accessibilité (4 points)
+```ts
+className={`p-4 rounded ${
+  isSuccess
+    ? 'bg-green-50 text-green-700 border border-green-200' 
+    : 'bg-red-50 text-red-700 border border-red-200'
+}`}
+```
 
-43. **Identifiez 3 bonnes pratiques d'accessibilité** dans ce formulaire.
+Pourquoi utilise-t-on des template literals ici ?
 
-44. **Analysez l'UX de ce bouton :**
-    ```jsx
-    <Button type="submit" disabled={isSubmitting} className="flex-1">
-      {isSubmitting ? 'Création...' : 'Créer la facture'}
-    </Button>
-    ```
-    Quels éléments améliorent l'expérience utilisateur ?
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
+<br/>
+<br/>
+
+## E) UX et Accessibilité (4 points)
+
+43. **Identifiez 3 bonnes pratiques d’accessibilité** dans ce formulaire.
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+44. **Analysez l’UX de ce bouton :**
+
+```jsx
+<Button type="submit" disabled={isSubmitting} className="flex-1">
+  {isSubmitting ? 'Création...' : 'Créer la facture'}
+</Button>
+```
+
+Quels éléments améliorent l’expérience utilisateur ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
 
