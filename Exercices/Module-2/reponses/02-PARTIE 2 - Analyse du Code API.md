@@ -216,3 +216,85 @@ Exemple avec indentation de 2 :
   "age": 30
 }
 ```
+
+
+<br/>
+<br/>
+
+
+# Annexe 2 - ?.
+```js
+const nextAvailableId = maxIdResult.rows[0]?.next_id || 1;
+```
+
+On va analyser **chaque morceau** :
+
+---
+
+### 1. `maxIdResult.rows[0]`
+
+La variable `maxIdResult` contient le **résultat de la requête SQL** suivante :
+
+```sql
+SELECT COALESCE(MAX(id), 0) + 1 as next_id FROM invoices;
+```
+
+Cette requête retourne un tableau d'une seule ligne contenant une colonne `next_id`, par exemple :
+
+```js
+{
+  rows: [
+    { next_id: 5 }
+  ]
+}
+```
+
+Donc `maxIdResult.rows[0]` accède à la première (et unique) ligne de résultat.
+
+---
+
+### 2. `?.next_id`
+
+L'opérateur `?.` est **l'opérateur d’accès optionnel** (optional chaining).
+
+* Si `rows[0]` existe, alors `.next_id` sera lu normalement.
+* Si `rows[0]` est `undefined` (par exemple si aucune ligne n'est retournée), alors `?.next_id` retourne `undefined` **sans provoquer d’erreur**.
+
+Cela évite une erreur du type "Cannot read property 'next\_id' of undefined".
+
+---
+
+### 3. `|| 1`
+
+C’est un **"fallback"**. Cela signifie :
+
+> Si ce qu’il y a à gauche (`maxIdResult.rows[0]?.next_id`) est `undefined`, `null`, `0`, `false` ou vide (`""`), alors utilise `1` à la place.
+
+Mais ici, on s’attend à ce que `next_id` soit un **nombre positif**.
+Donc le cas réel qu’on veut éviter, c’est quand il n’y a **aucune ligne dans `rows`**.
+
+---
+
+### En résumé
+
+```js
+const nextAvailableId = maxIdResult.rows[0]?.next_id || 1;
+```
+
+signifie :
+
+> Essaie de récupérer `next_id` depuis la première ligne du résultat SQL.
+> Si ce champ ou cette ligne n’existe pas (par exemple, table vide), utilise `1` comme valeur par défaut.
+
+---
+
+Si tu veux le rendre encore plus lisible, tu peux écrire :
+
+```js
+let nextAvailableId = 1;
+if (maxIdResult.rows.length > 0 && maxIdResult.rows[0].next_id) {
+  nextAvailableId = maxIdResult.rows[0].next_id;
+}
+```
+
+Mais la version compacte avec `?.` et `||` est très courante en JavaScript moderne.
