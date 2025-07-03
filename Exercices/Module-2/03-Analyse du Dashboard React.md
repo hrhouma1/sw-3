@@ -381,65 +381,175 @@ export default async function DashboardPage() {
 
 
 
-# Questions sur l'analyse du Dashboard (25 points)
+<br/>
+<br/>
 
-#### A) Architecture React et Next.js (6 points)
+# QUESTION 3 : Analyse du Dashboard (25 points)
 
-20. **Quelle est la différence entre un Server Component et un Client Component ?** Pourquoi ce composant est-il un Server Component ?
 
-21. **Expliquez la ligne `type Invoice = typeof invoices.$inferSelect;`** :
-    - Quel est l'avantage de cette approche ?
-    - Que se passe-t-il si on modifie le schéma de base de données ?
 
-22. **Analysez la gestion d'erreur dans le try-catch :** Pourquoi ne pas simplement écrire `error = e;` ?
+## A) Architecture React et Next.js (6 points)
 
-#### B) TailwindCSS et Responsive Design (8 points)
+20. **Quelle est la différence entre un Server Component et un Client Component ?**
+    Pourquoi ce composant est-il un Server Component ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+21. **Expliquez la ligne suivante :**
+
+```ts
+type Invoice = typeof invoices.$inferSelect;
+```
+
+* Quel est l’avantage de cette approche ?
+* Que se passe-t-il si on modifie le schéma de base de données ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+22. **Analysez la gestion d’erreur dans le `try-catch`**
+    Pourquoi ne pas simplement écrire `error = e;` ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+<br/>
+<br/>
+
+## B) TailwindCSS et Responsive Design (8 points)
 
 23. **Expliquez le système de grille utilisé :**
-    - Que fait `grid-cols-5` ?
-    - Comment cette approche se compare-t-elle à un tableau HTML classique ?
+
+* Que fait `grid-cols-5` ?
+* Comment cette approche se compare-t-elle à un tableau HTML classique ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
 24. **Analysez ces classes de responsive design :**
-    - `max-w-7xl mx-auto` : quel est l'effet sur différentes tailles d'écran ?
-    - Comment améliorer l'affichage sur mobile ?
 
-25. **Décrivez l'effet de ces combinaisons de classes :**
-    - `hover:bg-gray-50 transition-colors`
-    - `divide-y divide-gray-200`
-    - `inline-flex px-3 py-1 rounded-full`
+* `max-w-7xl mx-auto` : quel est l’effet sur différentes tailles d’écran ?
+* Comment améliorer l’affichage sur mobile ?
 
-26. **Système de couleurs TailwindCSS :** Expliquez la logique derrière :
-    - `bg-red-50 border-red-200 text-red-700`
-    - `bg-blue-100 text-blue-800`
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
-#### C) Logique conditionnelle et rendu (5 points)
+25. **Décrivez l’effet de ces combinaisons de classes :**
 
-27. **Analysez la structure conditionnelle :** 
-    ```jsx
-    {error ? (...) : (
-      <div>
-        {allInvoices.length === 0 ? (...) : (...)}
-      </div>
-    )}
-    ```
-    Quels sont les 3 états possibles de l'interface ?
+* `hover:bg-gray-50 transition-colors`
+* `divide-y divide-gray-200`
+* `inline-flex px-3 py-1 rounded-full`
 
-28. **Expliquez cette ligne de formatage :**
-    ```jsx
-    {invoice.status === 'open' ? 'Ouvert' : invoice.status === 'paid' ? 'Payé' : invoice.status || 'Ouvert'}
-    ```
-    Que se passe-t-il si `invoice.status` est `null` ou `undefined` ?
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
-#### D) Composants shadcn/ui et SVG (4 points)
+26. **Système de couleurs TailwindCSS :**
+    Expliquez la logique derrière :
+
+* `bg-red-50 border-red-200 text-red-700`
+* `bg-blue-100 text-blue-800`
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+<br/>
+<br/>
+
+## C) Logique conditionnelle et rendu (5 points)
+
+27. **Analysez la structure conditionnelle suivante :**
+
+```jsx
+{error ? (...) : (
+  <div>
+    {allInvoices.length === 0 ? (...) : (...)}
+  </div>
+)}
+```
+
+Quels sont les **3 états possibles de l’interface** ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+28. **Expliquez cette ligne de formatage conditionnel :**
+
+```jsx
+{invoice.status === 'open' ? 'Ouvert' : invoice.status === 'paid' ? 'Payé' : invoice.status || 'Ouvert'}
+```
+
+Que se passe-t-il si `invoice.status` est `null` ou `undefined` ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+<br/>
+<br/>
+
+## D) Composants shadcn/ui et SVG (4 points)
 
 29. **Composant Button avec `asChild` :**
-    - Que fait la prop `asChild` ?
-    - Pourquoi utiliser `<Button asChild><a>...</a></Button>` au lieu de `<button>` ?
+
+* Que fait la prop `asChild` ?
+* Pourquoi utiliser `<Button asChild><a>...</a></Button>` au lieu de `<button>` ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
 30. **Analysez les icônes SVG utilisées :**
-    - Icône "plus" : `d="M12 4v16m8-8H4"`
-    - Icône "trois points" : comment fonctionne le `path` ?
 
-#### E) Performance et bonnes pratiques (2 points)
+* Icône "plus" : `d="M12 4v16m8-8H4"`
+* Icône "trois points" : comment fonctionne le `path` ?
 
-31. **Identifiez 2 bonnes pratiques de performance dans ce code** et expliquez pourquoi elles sont importantes.
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+<br/>
+<br/>
+
+## E) Performance et bonnes pratiques (2 points)
+
+31. **Identifiez deux bonnes pratiques de performance dans ce code**
+    et expliquez pourquoi elles sont importantes.
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+
