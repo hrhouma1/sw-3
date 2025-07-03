@@ -1,4 +1,8 @@
-# Cours : Tests API avec VS Code REST Client et en-têtes HTTP
+# Cours sur les Tests API avec VS Code REST Client et en-têtes HTTP et Validation des APIs REST
+
+*Concevoir, exécuter et valider des tests d'intégration pour une API Next.js avec REST Client et contrôle des en-têtes HTTP*
+
+
 
 ## Table des matières
 
