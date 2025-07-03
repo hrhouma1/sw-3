@@ -2,7 +2,8 @@
 
 **Analysez la structure du projet ci-dessus et répondez aux questions suivantes.**
 
----
+<br/>
+<br/>
 
 ## A) Architecture générale (5 points)
 
@@ -23,7 +24,9 @@ ___________________________________________________________________________
 ___________________________________________________________________________  
 ```
 
----
+<br/>
+<br/>
+
 
 ## B) Routing et Pages (4 points)
 
@@ -43,7 +46,9 @@ ___________________________________________________________________________
 ___________________________________________________________________________  
 ```
 
----
+<br/>
+<br/>
+
 
 ## C) Base de données et ORM (3 points)
 
@@ -62,7 +67,9 @@ ___________________________________________________________________________
 ___________________________________________________________________________  
 ```
 
----
+<br/>
+<br/>
+
 
 ## D) Interface utilisateur (4 points)
 
@@ -75,7 +82,7 @@ ___________________________________________________________________________
 ```
 
 8. **Que représente le dossier `components/ui/` ?**
-   Quelle approche de développement cela suggère-t-il ?
+   Quelle approche de développement cela suggère-t-elle ?
 
 ```
 ___________________________________________________________________________  
@@ -101,11 +108,59 @@ ___________________________________________________________________________
 ___________________________________________________________________________  
 ```
 
----
+<br/>
+<br/>
+
+
+## F) Composants et gestion des interfaces (4 points)
+
+11. **Quelles sont les commandes utilisées pour ajouter de nouveaux composants UI à partir d’une librairie comme shadcn/ui ?**
+    (Exemple : bouton, carte, formulaire...)
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+12. **À partir de l’arborescence ASCII suivante, repérez les composants suivants : `button.tsx`, `form.tsx`, `card.tsx`.**
+
+> Recopiez leur chemin relatif exact.
+
+```
+src/  
+├── app/  
+│   ├── layout.tsx  
+│   └── page.tsx  
+├── components/  
+│   ├── ui/  
+│   │   ├── button.tsx  
+│   │   ├── card.tsx  
+│   │   ├── input.tsx  
+│   │   ├── form/  
+│   │   │   └── form.tsx  
+│   ├── navigation/  
+│   │   └── menu.tsx  
+│   └── shared/  
+│       └── logo.tsx  
+└── lib/  
+    └── utils.ts
+```
+
+**Chemins à écrire :**
+
+* `button.tsx` : \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+* `form.tsx` : \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+* `card.tsx` : \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
+<br/>
+<br/>
+
 
 ## Instructions
 
-* Durée recommandée : 15 à 20 minutes
-* Rédigez vos réponses de manière claire et structurée
-* Vous pouvez utiliser vos ressources personnelles pour justifier vos réponses
-* Points bonus : Mentionnez tout élément intéressant repéré dans la structure
+* Durée recommandée : 20 à 25 minutes
+* Répondez de manière claire et structurée
+* Points bonus : mentionnez toute convention ou outil supplémentaire observé
+
+
