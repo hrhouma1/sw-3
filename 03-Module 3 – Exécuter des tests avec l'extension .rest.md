@@ -4,7 +4,7 @@
 ### 1.1 - Codes présentés :
 
 ```
-code 1 - app/api/invoices/route.ts
+Code 1 - app/api/invoices/route.ts
 Code 2 - dashboard/page.tsx
 Code 3 - invoices/new/page.tsx 
 Code 4 - invoices/page.tsx
