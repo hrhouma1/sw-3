@@ -197,48 +197,142 @@ export async function GET() {
 
 
 
-###  Questions sur l'analyse du code (20 points)
+<br/>
+<br/>
 
-#### A) Architecture API (5 points)
+# QUESTION 2 : Analyse du Code API
 
-11. **Quelles sont les deux méthodes HTTP implémentées dans ce fichier ?** Expliquez brièvement le rôle de chacune.
+**Étudiez le fichier `src/app/api/invoices/route.ts` et répondez aux questions ci-dessous.**
 
-12. **Pourquoi utilise-t-on `async/await` dans ces fonctions ?** Donnez un exemple concret de son utilité ici.
+<br/>
+<br/>
 
-#### B) Gestion des données (6 points)
+## A) Architecture API (5 points)
 
-13. **Analysez la ligne `const { customer, email, value, description } = body;`** :
-    - Comment s'appelle cette syntaxe JavaScript ?
-    - Quel est son avantage par rapport à `const customer = body.customer;` ?
+11. **Quelles sont les deux méthodes HTTP implémentées dans ce fichier ?**
+    Expliquez brièvement le rôle de chacune.
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+12. **Pourquoi utilise-t-on `async/await` dans ces fonctions ?**
+    Donnez un exemple concret de son utilité ici.
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+<br/>
+<br/>
+
+## B) Gestion des données (6 points)
+
+13. **Analysez la ligne suivante :**
+
+```javascript
+const { customer, email, value, description } = body;
+```
+
+* Comment s'appelle cette syntaxe JavaScript ?
+* Quel est son avantage par rapport à `const customer = body.customer;` ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
 14. **Expliquez cette requête SQL complexe :**
-    ```sql
-    SELECT COALESCE(MAX(id), 0) + 1 as next_id FROM invoices
-    ```
-    - Que fait `COALESCE` ?
-    - Pourquoi ajoute-t-on `+ 1` ?
-    - Quel problème pourrait survenir avec cette approche en production ?
 
-#### C) Validation et sécurité (4 points)
+```sql
+SELECT COALESCE(MAX(id), 0) + 1 as next_id FROM invoices
+```
 
-15. **La validation actuelle est-elle suffisante ?** Proposez 3 améliorations possibles.
+* Que fait `COALESCE` ?
+* Pourquoi ajoute-t-on `+ 1` ?
+* Quel problème pourrait survenir avec cette approche en production ?
 
-16. **Qu'est-ce que l'opérateur `?.` dans `maxIdResult.rows[0]?.next_id` ?** Pourquoi est-il important ici ?
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
-#### D) Gestion d'erreurs (3 points)
+<br/>
+<br/>
 
-17. **Identifiez les différents types d'erreurs gérées** et leurs codes de statut HTTP correspondants.
+## C) Validation et sécurité (4 points)
 
-18. **Pourquoi fait-on `error instanceof Error` ?** Que se passe-t-il si on ne le fait pas ?
+15. **La validation actuelle est-elle suffisante ?**
+    Proposez 3 améliorations possibles.
 
-#### E) ORM et base de données (2 points)
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+16. **Qu'est-ce que l'opérateur `?.` dans `maxIdResult.rows[0]?.next_id` ?**
+    Pourquoi est-il important ici ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+<br/>
+<br/>
+
+## D) Gestion d’erreurs (3 points)
+
+17. **Identifiez les différents types d’erreurs gérées**
+    et leurs codes de statut HTTP correspondants.
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+18. **Pourquoi fait-on `error instanceof Error` ?**
+    Que se passe-t-il si on ne le fait pas ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
+
+<br/>
+<br/>
+
+## E) ORM et base de données (2 points)
 
 19. **Comparez ces deux approches dans le code :**
-    - `db.execute(sql\`SELECT...\`)` 
-    - `db.select().from(invoices)`
-    
-    Quand utiliser l'une ou l'autre ?
 
+* `db.execute(sql\`SELECT...\`)\`
+* `db.select().from(invoices)`
+  Quand utiliser l’une ou l’autre ?
+
+```
+___________________________________________________________________________  
+___________________________________________________________________________  
+___________________________________________________________________________  
+```
 
 <br/>
 <br/>
+
+## Instructions
+
+* Durée recommandée : 25 minutes
+* Vous pouvez naviguer dans le code pour trouver les explications
+* Rédigez des réponses structurées, concises et argumentées
+
+
+
+Souhaitez-vous maintenant que je vous exporte **les deux questions (1 et 2)** en **PDF propre**, ou en **fichier HTML prêt à intégrer dans une plateforme comme Thinkific ou Moodle** ?
+
