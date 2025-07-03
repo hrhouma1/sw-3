@@ -1,5 +1,12 @@
+# Cours sur les Architecture et Composants Fonctionnels de l’Application
+
+*Analyse structurée de l’arborescence, des composants critiques et du backend API dans une application de facturation Next.js 15 avec Drizzle ORM*
+
+
 
 # 1 - Arborescence de notre projet `MY-INVOICING-APP` :
+
+
 
 ### 1.1 - Codes présentés :
 
