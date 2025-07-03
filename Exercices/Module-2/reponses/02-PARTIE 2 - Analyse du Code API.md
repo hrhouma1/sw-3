@@ -184,3 +184,35 @@ Règle : Query Builder pour les cas simples, SQL brut pour les cas complexes
 - **Const assertion** : 'open' as const pour TypeScript
 - **Destructuration moderne** : extraction propre des propriétés
 - **API RESTful** : respect des conventions HTTP (GET, POST, codes statut) 
+
+
+
+# Annexe 1 - JSON.stringify(body, null, 2)
+
+
+Quand tu écris :
+
+```js
+JSON.stringify(body, null, 2)
+```
+
+tu utilises la fonction `JSON.stringify` avec trois arguments :
+
+1. `body` : c’est l’objet que tu veux convertir en texte JSON.
+2. `null` : c’est le paramètre appelé "replacer". Il sert à filtrer ou transformer certaines clés ou valeurs pendant la conversion. Ici, tu mets `null`, donc tu ne modifies rien. Toutes les clés et valeurs de l’objet seront incluses.
+3. `2` : c’est le paramètre appelé "espace". Il sert à ajouter des espaces pour rendre le résultat plus lisible. En mettant `2`, chaque niveau d’indentation aura deux espaces. Si tu mets `4`, ce seront quatre espaces, etc.
+
+Exemple sans indentation (ce qui est peu lisible) :
+
+```json
+{"name":"Alice","age":30}
+```
+
+Exemple avec indentation de 2 :
+
+```json
+{
+  "name": "Alice",
+  "age": 30
+}
+```
