@@ -11,4 +11,7 @@ https://github.com/hrhouma1/next-01-projet03-in-prisma (sw2)
 https://github.com/hrhouma1/next-01-projet04-clerk-app-demo1
 https://github.com/hrhouma1/next-02-projet01-next-auth-azure-ghaction.git (avance) ==> déploiement sur Azure + Github actions + Nom de domaine sur Azure (Next auth)
 https://github.com/hrhouma1/next-02-projet02-next-jwt-hostinger-ghaction.git ==> déploiement sur Hostinger + Github actions + Nom de domaine sur Hostinger (MVP SAAS complet) (JWT)
+https://github.com/hrhouma1/sw-1/blob/main/Evaluations/04-Laboratoire2.md
+https://github.com/hrhouma1/next-01-evaluation-du-lab2
+https://github.com/hrhouma1/next-01-evaluation-du-lab2-projet-final
 ```
